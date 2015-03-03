@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8" />
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
   <!--[if lte IE 8]>
-     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.ie.css" />
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.ie.css" />
   <![endif]-->
-    <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-    <link rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' />
-    <link rel='stylesheet' type='text/css' href='//rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/dist/L.Control.Locate.min.css' />
+  <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <link rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' />
+  <link rel='stylesheet' type='text/css' href='//rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/dist/L.Control.Locate.min.css' />
   <style type="text/css">
     body {
       padding: 0;
@@ -16,53 +17,47 @@
     html, body, #leaflet-map {
       height: 100%;
     }
-
   </style>
 </head>
 <body>
   <div id="leaflet-map"></div>
   <script src="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-    <script src='//rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/dist/L.Control.Locate.min.js'></script>
+  <script src="//cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.5/esri-leaflet.js"></script>
+  <script src='//rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/dist/L.Control.Locate.min.js'></script>
   <script>
-    var poi = new L.LayerGroup();
-    L.marker([45.19151, 5.71465]).bindPopup('Gare de Grenoble').addTo(poi);
-    L.marker([45.19109, 5.72115]).bindPopup('Rendez vous').addTo(poi);
-    L.marker([45.19438, 5.73262]).bindPopup('Parking').addTo(poi);
-    L.marker([45.21427, 5.80752]).bindPopup('esri France<br/>50 chemin de l\'étoile Montbonnot-Saint-Martin<br />04 76 01 87 06').addTo(poi);
+    var poi = new L.LayerGroup(),
+    gare = L.popup().setContent('Gare de Grenoble'),
+    esrigre= L.popup().setContent('esri France<br/>50 chemin de l\'étoile Montbonnot-Saint-Martin<br />04 76 01 87 06');
+    L.marker([45.19151, 5.71465]).bindPopup(gare).addTo(poi);
+    L.marker([45.21427, 5.80752]).bindPopup(esrigre).addTo(poi);
 
+    var withArnaud = new L.LayerGroup();
+    L.marker([45.19109, 5.72115]).bindPopup('Rendez vous').addTo(withArnaud);
+    L.marker([45.19438, 5.73262]).bindPopup('Parking').addTo(withArnaud);
 
+    var transport = new L.LayerGroup();
 
-    var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      mbUrl = 'https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png';
-
-    var grayscale = L.tileLayer(mbUrl, {
-        id: 'examples.map-20v6611k',
-        attribution: mbAttr
-      }),
-      streets = L.tileLayer(mbUrl, {
-        id: 'examples.map-i875mjb7',
-        attribution: mbAttr
-      }),
-      imagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
-      toner = L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'),
-      space = L.tileLayer('http://{s}.tiles.mapbox.com/v3/eleanor.ipncow29/{z}/{x}/{y}.png');
+    var grayscale = L.esri.basemapLayer('Gray'),
+      imagery = L.esri.basemapLayer('Imagery'),
+      topo = L.esri.basemapLayer('Topographic');
 
     var map = L.map('leaflet-map', {
-      center: [45.19109, 5.72115],
-      zoom: 16,
-      layers: [grayscale, poi]
+      //center: [45.19109, 5.72115],
+      center: [45.19613, 5.76465],
+      zoom: 12,
+      layers: [topo, poi]
     });    
 
     var baseLayers = {
-      "Grayscale": grayscale,
-      "Streets": streets,
-      "Stamen Toner": toner,
-      "esri imagery": imagery,
-      "MapBox space": space
+      "Gray": grayscale,
+      "Topo": topo,
+      "Imagery": imagery
     };
 
     var overlays = {
-      "POI": poi
+      "POI": poi,
+      "En camion": withArnaud,
+      "Transport": transport
     };
 
     // Add geolocation control
@@ -77,7 +72,7 @@
     }).addTo(map);
 
 
-    L.control.layers(baseLayers, overlays).addTo(map);
+    L.control.layers(baseLayers, overlays, {collapsed: false}).addTo(map);
   </script>
 </body>
 </html>
