@@ -24,6 +24,7 @@
   <script src="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <script src="//cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.5/esri-leaflet.js"></script>
   <script src='//rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/dist/L.Control.Locate.min.js'></script>
+  <script src="//rawgit.com/calvinmetcalf/leaflet-ajax/master/dist/leaflet.ajax.min.js"></script>
   <script>
     var poi = new L.LayerGroup(),
     gare = L.popup().setContent('Gare de Grenoble'),
@@ -36,6 +37,9 @@
     L.marker([45.19438, 5.73262]).bindPopup('Parking').addTo(withArnaud);
 
     var transport = new L.LayerGroup();
+
+    var transGeojsonLayer = new L.GeoJSON.AJAX("transport.geojson");
+    transGeojsonLayer.addTo(transport);
 
     var grayscale = L.esri.basemapLayer('Gray'),
       imagery = L.esri.basemapLayer('Imagery'),
