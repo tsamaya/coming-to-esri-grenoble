@@ -24,23 +24,43 @@
   <script src="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <script src="//cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.5/esri-leaflet.js"></script>
   <script src='//rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/dist/L.Control.Locate.min.js'></script>
-  <!--<script src="//rawgit.com/calvinmetcalf/leaflet-ajax/master/dist/leaflet.ajax.min.js"></script>-->
   <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
   <script>
+
+  var icon = new L.Icon({
+      iconUrl: 'img/marker-icon-red.png'
+    });
+  var LeafIcon = L.Icon.extend({
+    options: {
+        iconSize:     [25, 41],
+        iconAnchor:   [12, 41],
+        popupAnchor:  [1, -41]
+    }
+});
+
+    var redIcon = new LeafIcon({
+      iconUrl: 'img/marker-icon-red.png'
+    });
+
+    var purpleIcon = new LeafIcon({
+      iconUrl: 'img/marker-icon-purple.png'
+    });
+
+    var greenIcon = new LeafIcon({
+      iconUrl: 'img/marker-icon-green.png'
+    });
+
     var poi = new L.LayerGroup(),
     gare = L.popup().setContent('Gare de Grenoble'),
     esrigre= L.popup().setContent('esri France<br/>50 chemin de l\'étoile Montbonnot-Saint-Martin<br />04 76 01 87 06');
-    L.marker([45.19151, 5.71465]).bindPopup(gare).addTo(poi);
-    L.marker([45.21427, 5.80752]).bindPopup(esrigre).addTo(poi);
+    L.marker([45.19151, 5.71465], {icon: greenIcon}).bindPopup(gare).addTo(poi);
+    L.marker([45.21427, 5.80752], {icon: redIcon}).bindPopup(esrigre).addTo(poi);
 
     var withArnaud = new L.LayerGroup();
-    L.marker([45.19109, 5.72115]).bindPopup('Rendez vous').addTo(withArnaud);
-    L.marker([45.19438, 5.73262]).bindPopup('Parking').addTo(withArnaud);
+    L.marker([45.19109, 5.72115], {icon: purpleIcon}).bindPopup('Rendez vous').addTo(withArnaud);
+    L.marker([45.19438, 5.73262], {icon: purpleIcon}).bindPopup('Parking').addTo(withArnaud);
 
     var transport = new L.LayerGroup();
-
-    // var transGeojsonLayer = new L.GeoJSON.AJAX("transport.geojson");
-    // transGeojsonLayer.addTo(transport);
 
   $.getJSON("transport.geojson", function(data) {
     var geojson = L.geoJson(data, {
