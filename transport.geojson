@@ -4,7 +4,8 @@
     {
       "type": "Feature",
       "properties": {
-      	"mode": "bus C1"
+        "color": "red",
+      	"description": "bus C1"
       	},
       "geometry": {
         "type": "LineString",
@@ -295,7 +296,8 @@
     {
       "type": "Feature",
       "properties": {
-      	"mode": "à pieds"      	
+        "color": "blue",
+      	"description": "à pieds"      	
       	},
       "geometry": {
         "type": "LineString",
