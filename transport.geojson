@@ -5,7 +5,7 @@
       "type": "Feature",
       "properties": {
         "color": "red",
-      	"description": "Chrono Bus C1 <br/>De la Gare au Terminus Maupertuis<br />30 minutes<br />1 bus toutes les 7 minutes"
+      	"description": "<b>Chrono Bus C1</b><br/>De la Gare au Terminus Maupertuis<br />30 minutes<br />1 bus toutes les 7 minutes<br /><img src='img/TAG_C0.jpg' width='150' height='100'> "
       	},
       "geometry": {
         "type": "LineString",
@@ -297,7 +297,7 @@
       "type": "Feature",
       "properties": {
         "color": "blue",
-      	"description": "à pieds<br />10 à 12 minutes"      	
+      	"description": "A pieds<br />10 à 12 minutes"      	
       	},
       "geometry": {
         "type": "LineString",

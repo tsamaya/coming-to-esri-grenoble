@@ -51,8 +51,8 @@
     });
 
     var poi = new L.LayerGroup(),
-    gare = L.popup().setContent('Gare de Grenoble'),
-    esrigre= L.popup().setContent('esri France<br/>50 chemin de l\'étoile Montbonnot-Saint-Martin<br />04 76 01 87 06');
+    gare = L.popup().setContent('<b>Gare de Grenoble</>'),
+    esrigre= L.popup().setContent('<b>Esri France</><br/>50 chemin de l\'étoile Montbonnot-Saint-Martin<br />04 76 01 87 06');
     L.marker([45.19151, 5.71465], {icon: greenIcon}).bindPopup(gare).addTo(poi);
     L.marker([45.21427, 5.80752], {icon: redIcon}).bindPopup(esrigre).addTo(poi);
 
