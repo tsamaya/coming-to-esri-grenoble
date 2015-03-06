@@ -5,7 +5,7 @@
       "type": "Feature",
       "properties": {
         "color": "blue",
-        "description": "à pieds en passant par 'au rendez vous'"      
+        "description": "à pieds en passant par 'au rendez vous' <br />15 à 20 minutes minutes"      
       },
       "geometry": {
         "type": "LineString",
@@ -101,7 +101,7 @@
       "type": "Feature",
       "properties": {
         "color": "orange",
-        "description": "en voiture"      
+        "description": "en voiture d'un autre âge<br/>20 minutes<br /><img src='http://tsamaya.net/avatars/b2-small.jpg' width='132' height='99' /> "      
       },
       "geometry": {
         "type": "LineString",
