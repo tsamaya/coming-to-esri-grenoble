@@ -5,7 +5,7 @@
       "type": "Feature",
       "properties": {
         "color": "blue",
-        "description": "A pieds en passant par 'au rendez vous', <br />15 à 20 minutes minutes"      
+        "description": "A pieds en passant par 'au rendez vous', <br />15 à 20 minutes minutes"
       },
       "geometry": {
         "type": "LineString",
@@ -101,7 +101,7 @@
       "type": "Feature",
       "properties": {
         "color": "orange",
-        "description": "En voiture d'un autre âge,<br/>20 minutes,<br /><img src='http://tsamaya.net/avatars/b2-small.jpg' width='132' height='99' /> "      
+        "description": "En voiture d'un autre âge,<br/>passage à gué non obligatoire<br/>20 minutes,<br /><img src='http://tsamaya.net/avatars/b2-small.jpg' width='132' height='99' /> "      
       },
       "geometry": {
         "type": "LineString",
